@@ -55,5 +55,11 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
 
         // Blogs
         Route::resource('blogs', 'BlogsController', ['except' => ['create', 'edit']]);
+
+        // Students
+        Route::resource('students', 'StudentsController', ['except' => ['create', 'edit']]);
+
+        // Delete Student
+        //Route::post('students/destroy', 'StudentsController@destroy');
     });
 });

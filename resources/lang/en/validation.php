@@ -191,6 +191,24 @@ return [
                 'status'           => 'Status',
             ],
 
+            'students' => [
+                'first_name'      => 'First Name',
+                'first_name_ph'   => 'Enter Student\'s First Name',
+                'last_name_ph'    => 'Enter Student\'s Last Name',
+                'last_name'       => 'Last Name',
+                'gender'          => 'Gender',
+                'no_gender'       => 'No Gender',
+                'hobbies'         => 'Hobbies',
+                'profile_picture' => 'Profile Picture',
+                'standard'        => 'Standard',
+                'hobbies_desc'    => 'Describe Student\'s Hobbies'
+            ],
+
+            'standard' => [
+                'name'   => 'Standard name',
+                'status' => 'Enabled',
+            ],
+
             'settings' => [
                 'sitelogo'        => 'Site Logo',
                 'favicon'         => 'Fav Icon',
