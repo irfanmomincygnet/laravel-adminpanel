@@ -46,9 +46,9 @@
         {{ Form::label('profile_picture', trans('validation.attributes.backend.students.profile_picture'), ['class' => 'col-lg-2 control-label']) }}
 
         @if(!empty($student->profile_picture))
-            <div class="col-lg-1 img-remove-logo">
+            <div class="col-lg-1 img-remove-profilepic">
                 <img src="<?php echo Storage::url('img/student/'.($student->profile_picture ? $student->profile_picture : 'default.png')); ?>" height="80" width="80">
-                <i id="remove-logo-img" class="fa fa-times remove-logo" data-id="profilepic" aria-hidden="true"></i>
+                <i id="remove-logo-img" class="fa fa-times remove-profilepic" data-id="profilepic" aria-hidden="true"></i>
             </div>
             <input type="hidden" name="remove_img" id="remove_profilepic" value="">
         @endif
