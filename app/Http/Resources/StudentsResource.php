@@ -16,14 +16,6 @@ class StudentsResource extends Resource
      */
     public function toArray($request)
     {
-        $stds = Standard::where('status', 1)->get()->all();
-        $standard = [];
-        if(!empty($stds)) {
-            foreach ($stds as $std) {
-                $standard[$std->id] = $std->name;
-            }
-        }
-
         return [
             'id'              => $this->id,
             'first_name'      => $this->first_name,
@@ -31,7 +23,7 @@ class StudentsResource extends Resource
             'gender'          => $this->gender,
             'hobbies'         => $this->hobbies,
             'profile_picture' => $this->profile_picture,
-            'standard'        => $standard[$this->standard],
+            'standard'        => Standard::where('id', $this->standard)->first()->name,
             'created_at'      => optional($this->created_at)->toDateString(),
             'created_by'      => (is_null($this->user_name)) ? optional($this->owner)->first_name : $this->user_name,
         ];

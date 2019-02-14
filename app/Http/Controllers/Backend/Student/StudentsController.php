@@ -16,6 +16,7 @@ use App\Http\Requests\Backend\Student\StoreStudentRequest;
 use App\Http\Requests\Backend\Student\EditStudentRequest;
 use App\Http\Requests\Backend\Student\UpdateStudentRequest;
 use App\Http\Requests\Backend\Student\DeleteStudentRequest;
+use App\Models\Standard\Standard;
 
 /**
  * StudentsController
@@ -39,24 +40,23 @@ class StudentsController extends Controller
     ];
 
     /**
-     * [$standard Standard List]
-     * @var [type]
-     */
-    /*public $standard = [
-        'primary'          => 'Primary',
-        'secondary'        => 'Secondary',
-        'higher_secondary' => 'Higher Secondary',
-        'graduate'         => 'Graduate',
-        'post_graduate'    => 'Post Graduate',
-    ];*/
-
-    /**
      * contructor to initialize repository object
      * @param StudentRepository $repository;
      */
     public function __construct(StudentRepository $repository)
     {
         $this->repository = $repository;
+    }
+
+    /**
+     * getStandardsArray Get Standards list Dynamically
+     * @return Standards Array
+     */
+    public function getStandardsArray()
+    {
+        $standard = Standard::where('status', 1)->pluck('name', 'id');
+
+        return $standard;
     }
 
     /**
@@ -69,6 +69,7 @@ class StudentsController extends Controller
     {
         return new ViewResponse('backend.students.index');
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -77,8 +78,9 @@ class StudentsController extends Controller
      */
     public function create(CreateStudentRequest $request)
     {
-        return new CreateResponse($this->gender);
+        return new CreateResponse($this->gender, $this->getStandardsArray());
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -104,8 +106,9 @@ class StudentsController extends Controller
      */
     public function edit(Student $student, EditStudentRequest $request)
     {
-        return new EditResponse($student, $this->gender);
+        return new EditResponse($student, $this->gender, $this->getStandardsArray());
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -113,6 +116,7 @@ class StudentsController extends Controller
      * @param  App\Models\Student\Student  $student
      * @return \App\Http\Responses\RedirectResponse
      */
+
     public function update(UpdateStudentRequest $request, Student $student)
     {
         //Input received from the request
@@ -122,6 +126,7 @@ class StudentsController extends Controller
         //return with successfull message
         return new RedirectResponse(route('admin.students.index'), ['flash_success' => trans('alerts.backend.students.updated')]);
     }
+
     /**
      * Remove the specified resource from storage.
      *

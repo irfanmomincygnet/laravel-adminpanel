@@ -32,7 +32,7 @@ class StudentRepository extends BaseRepository
     public function __construct()
     {
         $this->upload_path = 'img'.DIRECTORY_SEPARATOR.'student'.DIRECTORY_SEPARATOR;
-        $this->storage = Storage::disk('public');
+        $this->storage     = Storage::disk('public');
     }
 
     /**
@@ -89,7 +89,7 @@ class StudentRepository extends BaseRepository
     public function update(Student $student, array $input)
     {
         $input               = $this->uploadImage($input);
-        $input['created_by'] = access()->user()->id;
+        $input['updated_by'] = access()->user()->id;
 
         if ($student->update($input))
             return true;

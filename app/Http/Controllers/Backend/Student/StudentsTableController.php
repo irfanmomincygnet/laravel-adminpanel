@@ -22,6 +22,10 @@ class StudentsTableController extends Controller
      */
     protected $student;
 
+    /**
+     * variable to access public methods of Students Controller
+     * @var $studentController
+     */
     protected $studentController;
 
     /**
@@ -30,7 +34,7 @@ class StudentsTableController extends Controller
      */
     public function __construct(StudentRepository $student, StudentsController $studentController)
     {
-        $this->student = $student;
+        $this->student           = $student;
         $this->studentController = $studentController;
     }
 
@@ -42,7 +46,6 @@ class StudentsTableController extends Controller
      */
     public function __invoke(ManageStudentRequest $request)
     {
-
         return Datatables::of($this->student->getForDataTable())
             ->escapeColumns(['id'])
             ->addColumn('created_at', function ($student) {
@@ -55,12 +58,11 @@ class StudentsTableController extends Controller
                 return (empty($student->profile_picture) ? '' : '<img src="'.Storage::url("img/student/".$student->profile_picture).'" height="80" width="80">');
             })
             ->addColumn('standard', function ($student) {
-                $stds = Standard::where('status', 1)->find($student->standard);
-
+                $stds = Standard::find($student->standard);
                 return ($stds->name);
             })
             ->addColumn('gender', function ($student) {
-                $gender   = $this->studentController->gender;
+                $gender = $this->studentController->gender;
                 return ($gender[$student->gender]);
             })
             ->addColumn('actions', function ($student) {

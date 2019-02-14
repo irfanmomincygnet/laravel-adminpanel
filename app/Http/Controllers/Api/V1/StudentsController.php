@@ -10,6 +10,10 @@ use Validator;
 
 class StudentsController extends APIController
 {
+    /**
+     * Student Repository to fetch records
+     * @var $repository
+     */
     protected $repository;
 
     /**

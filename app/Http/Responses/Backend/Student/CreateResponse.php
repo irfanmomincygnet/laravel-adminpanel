@@ -3,15 +3,25 @@
 namespace App\Http\Responses\Backend\Student;
 
 use Illuminate\Contracts\Support\Responsable;
-use App\Models\Standard\Standard;
 
 class CreateResponse implements Responsable
 {
+    /**
+     * [$gender Get Gender list from Controller]
+     * @var [Array]
+     */
     protected $gender;
 
-    public function __construct($gender)
+    /**
+     * [$standard Get Standards list from Controller]
+     * @var [Array]
+     */
+    protected $standard;
+
+    public function __construct($gender, $standard)
     {
-        $this->gender = $gender;
+        $this->gender   = $gender;
+        $this->standard = $standard;
     }
 
     /**
@@ -23,17 +33,9 @@ class CreateResponse implements Responsable
      */
     public function toResponse($request)
     {
-        $stds = Standard::where('status', 1)->get()->all();
-        $standard = [];
-        if(!empty($stds)) {
-            foreach ($stds as $std) {
-                $standard[$std->id] = $std->name;
-            }
-        }
-
         return view('backend.students.create')->with([
             'gender'   => $this->gender,
-            'standard' => $standard,
+            'standard' => $this->standard,
         ]);
     }
 }

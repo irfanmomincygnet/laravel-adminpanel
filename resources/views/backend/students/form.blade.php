@@ -16,7 +16,8 @@
     </div><!--form control-->
 
     <div class="form-group">
-        {{ Form::label('gender', trans('validation.attributes.backend.students.gender'), ['class' => 'col-lg-2 control-label']) }}
+        {{ Form::label('gender', trans('validation.attributes.backend.students.gender'), ['class' => 'col-lg-2 control-label required']) }}
+
         <div class="col-lg-8">
             @if (count($gender) > 0)
                 @foreach($gender as $genVal => $genLabel)
@@ -43,6 +44,7 @@
 
     <div class="form-group">
         {{ Form::label('profile_picture', trans('validation.attributes.backend.students.profile_picture'), ['class' => 'col-lg-2 control-label']) }}
+
         @if(!empty($student->profile_picture))
             <div class="col-lg-1">
                 <img src="<?php echo Storage::url('img/student/'.$student->profile_picture); ?>" height="80" width="80">
