@@ -55,7 +55,7 @@ class StudentsTableController extends Controller
                 return $student->user_name;
             })
             ->addColumn('profile_picture', function ($student) {
-                return (empty($student->profile_picture) ? '' : '<img src="'.Storage::url("img/student/".$student->profile_picture).'" height="80" width="80">');
+                return '<img src="'.Storage::url("img/student/".($student->profile_picture ? $student->profile_picture : 'default.png' )).'" height="80" width="80">';
             })
             ->addColumn('standard', function ($student) {
                 $stds = Standard::find($student->standard);

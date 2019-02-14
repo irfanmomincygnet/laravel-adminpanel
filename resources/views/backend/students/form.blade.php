@@ -46,9 +46,11 @@
         {{ Form::label('profile_picture', trans('validation.attributes.backend.students.profile_picture'), ['class' => 'col-lg-2 control-label']) }}
 
         @if(!empty($student->profile_picture))
-            <div class="col-lg-1">
-                <img src="<?php echo Storage::url('img/student/'.$student->profile_picture); ?>" height="80" width="80">
+            <div class="col-lg-1 img-remove-logo">
+                <img src="<?php echo Storage::url('img/student/'.($student->profile_picture ? $student->profile_picture : 'default.png')); ?>" height="80" width="80">
+                <i id="remove-logo-img" class="fa fa-times remove-logo" data-id="profilepic" aria-hidden="true"></i>
             </div>
+            <input type="hidden" name="remove_img" id="remove_profilepic" value="">
         @endif
         <div class="col-lg-5">
             <div class="custom-file-input">
@@ -68,4 +70,9 @@
 </div>
 
 @section("after-scripts")
+<script>
+    (function(){
+        Backend.Students.init();
+    })();
+</script>
 @endsection

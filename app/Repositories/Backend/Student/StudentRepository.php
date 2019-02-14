@@ -122,7 +122,8 @@ class StudentRepository extends BaseRepository
      */
     public function uploadImage($input)
     {
-        if(empty($input['profile_picture'])) {
+        if(isset($input['remove_img']) && !empty($input['remove_img'])) {
+            $input = array_merge($input, ['profile_picture' => '']);
             return $input;
         }
 

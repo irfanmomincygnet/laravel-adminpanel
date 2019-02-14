@@ -43,7 +43,12 @@
                                 {!! Form::text('last_name', null, ["class" => "search-input-text form-control", "data-column" => 3, "placeholder" => trans('labels.backend.access.users.table.last_name')]) !!}
                                     <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a>
                             </th>
-                            <th></th>
+                            <th>
+                                {!! Form::select('gender', $gender, null, ["class" => "search-input-select form-control", "data-column" => 4, "placeholder" => trans('labels.backend.blogs.table.all')]) !!}
+                            </th>
+                            <th>
+                                {!! Form::select('standard', $standard, null, ["class" => "search-input-select form-control", "data-column" => 5, "placeholder" => trans('labels.backend.blogs.table.all')]) !!}
+                            </th>
                             <th></th>
                             <th></th>
                         </tr>

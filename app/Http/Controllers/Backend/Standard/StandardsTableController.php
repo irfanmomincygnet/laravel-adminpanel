@@ -44,6 +44,9 @@ class StandardsTableController extends Controller
             ->addColumn('actions', function ($standard) {
                 return $standard->action_buttons;
             })
+            ->addColumn('status', function ($standard) {
+                return $standard->status_label;
+            })
             ->make(true);
     }
 }

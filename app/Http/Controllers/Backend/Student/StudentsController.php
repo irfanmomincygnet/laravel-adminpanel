@@ -16,8 +16,8 @@ use App\Http\Requests\Backend\Student\StoreStudentRequest;
 use App\Http\Requests\Backend\Student\EditStudentRequest;
 use App\Http\Requests\Backend\Student\UpdateStudentRequest;
 use App\Http\Requests\Backend\Student\DeleteStudentRequest;
+use App\Http\Responses\Backend\Student\IndexResponse;
 use App\Models\Standard\Standard;
-
 /**
  * StudentsController
  */
@@ -67,7 +67,8 @@ class StudentsController extends Controller
      */
     public function index(ManageStudentRequest $request)
     {
-        return new ViewResponse('backend.students.index');
+        return new IndexResponse($this->getStandardsArray(), $this->gender);
+        //return new ViewResponse('backend.students.index');
     }
 
     /**

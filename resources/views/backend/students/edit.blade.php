@@ -33,5 +33,6 @@
                 </div><!--form-group-->
             </div><!--box-body-->
         </div><!--box box-success -->
+        <input type="hidden" data-id="{{ $student->id }}" id="student">
     {{ Form::close() }}
 @endsection
