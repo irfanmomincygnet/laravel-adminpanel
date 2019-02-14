@@ -47,6 +47,7 @@ class StandardsController extends Controller
     {
         return new ViewResponse('backend.standards.index');
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -63,6 +64,7 @@ class StandardsController extends Controller
      * @param  StoreStandardRequestNamespace  $request
      * @return \App\Http\Responses\RedirectResponse
      */
+
     public function store(StoreStandardRequest $request)
     {
         //Input received from the request
@@ -72,6 +74,7 @@ class StandardsController extends Controller
         //return with successfull message
         return new RedirectResponse(route('admin.standards.index'), ['flash_success' => trans('alerts.backend.standards.created')]);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -83,6 +86,7 @@ class StandardsController extends Controller
     {
         return new EditResponse($standard);
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -99,6 +103,7 @@ class StandardsController extends Controller
         //return with successfull message
         return new RedirectResponse(route('admin.standards.index'), ['flash_success' => trans('alerts.backend.standards.updated')]);
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -106,6 +111,7 @@ class StandardsController extends Controller
      * @param  App\Models\Standard\Standard  $standard
      * @return \App\Http\Responses\RedirectResponse
      */
+
     public function destroy(Standard $standard, DeleteStandardRequest $request)
     {
         //Calling the delete method on repository
@@ -113,5 +119,5 @@ class StandardsController extends Controller
         //returning with successfull message
         return new RedirectResponse(route('admin.standards.index'), ['flash_success' => trans('alerts.backend.standards.deleted')]);
     }
-    
+
 }

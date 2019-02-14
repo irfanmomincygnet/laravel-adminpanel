@@ -11,15 +11,25 @@ class EditResponse implements Responsable
      * @var App\Models\Student\Student
      */
     protected $students;
+
+    /**
+     * @var Get Gender List from Controller
+     */
     protected $gender;
+
+    /**
+     * @var Get Standard List from Controller
+     */
+    protected $standard;
 
     /**
      * @param App\Models\Student\Student $students
      */
-    public function __construct($students, $gender)
+    public function __construct($students, $gender, $standard)
     {
         $this->students = $students;
         $this->gender   = $gender;
+        $this->standard = $standard;
     }
 
     /**
@@ -31,18 +41,10 @@ class EditResponse implements Responsable
      */
     public function toResponse($request)
     {
-        $stds = Standard::where('status', 1)->get()->all();
-        $standard = [];
-        if(!empty($stds)) {
-            foreach ($stds as $std) {
-                $standard[$std->id] = $std->name;
-            }
-        }
-
         return view('backend.students.edit')->with([
             'student'  => $this->students,
             'gender'   => $this->gender,
-            'standard' => $standard,
+            'standard' => $this->standard,
         ]);
     }
 }

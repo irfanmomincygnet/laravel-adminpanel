@@ -37,6 +37,8 @@ class Student extends Model
         'hobbies',
         'profile_picture',
         'standard',
+        'created_by',
+        'updated_by'
     ];
 
     /**
