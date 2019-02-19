@@ -1,13 +1,19 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-	<div class="form-blog-search">
-		<input type="search" value="{{ $search }}" name="search" />
+	<div class="row">
+		<div class="form-blog-search col-md-6">
+			<input class="form-control" placeholder="Search by Name, Category or Tag" type="search" value="{{ $search }}" name="search" />
+		</div>
 	</div>
 
 	<div class="blog-list-main">
 		@if (count($blogs) > 0)
 			@include('frontend.blogs.list', ['blogs' => $blogs])
+		@else
+			<div class="blogs-list">
+				No Blogs found!!
+			</div>
 		@endif
 	</div>
 @endsection
@@ -33,9 +39,13 @@
 						data: {
 							search: search
 						},
-						success: function(result){
+						success: function(result) {
 							if(result != '') {
 								$('.blog-list-main').html(result.html);
+							}
+							if(result.isAjax == 1) {
+								var obj = { Page: 1, Url: "<?php echo action('Frontend\Blogs\BlogsController@index') ?>" };
+								history.pushState(obj, obj.Page, obj.Url);
 							}
 						}
 					});
@@ -44,5 +54,3 @@
 		});
 	</script>
 @endsection
-
-

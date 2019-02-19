@@ -37,6 +37,8 @@ class Blog extends BaseModel
         'updated_at',
     ];
 
+    public static $perpage = 5;
+
     /**
      * The database table used by the model.
      *

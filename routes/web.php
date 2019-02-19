@@ -32,6 +32,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', '
      *
      * Note: Administrator has all permissions so you do not have to specify the administrator role everywhere.
      */
+    Route::get('/', 'DashboardController@index')->name('dashboard');
     includeRouteFiles(__DIR__.'/Backend/');
 });
 

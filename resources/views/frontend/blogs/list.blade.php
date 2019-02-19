@@ -1,4 +1,5 @@
 <div class="panel panel-default">
+	<span>Total Blogs: {{ $blogs->total() }}</span>
 	<div class="panel-heading">
 		<h3>Blogs</h3>
 	</div>
@@ -10,4 +11,7 @@
 			<p>{!! str_limit($blog->content, 200) !!}<a href="{{ action('Frontend\Blogs\BlogsController@show', ['id' => $blog->id]) }}">read more</a></p>
 		@endforeach
 	</div>
+</div>
+<div class="footer-pagination">
+	{{ $blogs->links() }}
 </div>
